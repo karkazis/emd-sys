@@ -1,0 +1,6 @@
+*.map
+*.hex
+*.elf
+*.o
+*.o.d
+memoryfile
