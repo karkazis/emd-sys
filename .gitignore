@@ -3,4 +3,4 @@
 *.elf
 *.o
 *.o.d
-memoryfile
+memoryfile.xml
