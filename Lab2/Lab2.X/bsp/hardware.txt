@@ -1,0 +1,100 @@
+================================================================
+PIC24FJ1024GB610 Processor module for the Explorer 16/32
+================================================================
+
+mikroBUS(tm) connections
+----------------------------------------------------------------
+The Explorer 16/32 demo board has two mikroBUS ports: A and B.
+The below charts show how the processor pins map to the mikroBUS
+ports and what other features are shared on those pins on the
+Explorer 16/32.
+
+ +- mikroBUS A pin
+ |       +- Processor pin
+ |       |       +- Explorer 16/32 net name(s)
+ |       |       |                 +- Other pin usage on board
+ |       |       |                 |
+/===\ /=====\ /===============\ /========================================\
+AN   |  RB10 |  P25_ANA_USBOC  |  USB over current resistor divider (J33)
+RST  |  RF3  |  P95_RSTA       |  
+CS   |  RG9  |  P14_CSA        |  
+SCK  |  RG6  |  P10_SCKA       |  EEPROM SCK     
+MISO |  RG7  |  P11_MISOA      |  EEPROM MISO
+MOSI |  RG8  |  P12_MOSIA      |  EEPROM MOSI
+PWM  |  RD0  |  P72_PWMA       |  
+INT  |  RD12 |  P67_INTA       |  
+RX   |  RC4  |  P52_RXA        |  
+TX   |  RF2  |  P51_TXA        |  
+SCL  |  RA14 |  P57_SCL        |  MCP2221A SCL and mikroBUS B SCL
+SDA  |  RA15 |  P56_SDA        |  MCP2221A SDA and mikroBUS B SDA
+
+
+ +- mikroBUS B pin
+ |       +- Processor pin
+ |       |       +- Explorer 16/32 net name(s)
+ |       |       |                 +- Other pin usage on board
+ |       |       |                 |
+/===\ /=====\ /===============\ /========================================\
+AN   |  RB1  |  P24_ANB        |  
+RST  |  RE9  |  P19_RSTB       |  
+CS   |  RB2  |  P23_CSB        |  
+SCK  |  RB0  |  P55_SCKB       |  
+MISO |  RD2  |  P54_MISOB      |  
+MOSI |  RF8  |  P53_MOSIB      |  
+PWM  |  RD3  |  P78_PWMB       |  
+INT  |  RE8  |  P18_INTB       |  
+RX   |  RF4  |  P49_RXB        |  MCP2221A TX (J37)
+TX   |  RF5  |  P50_TXB        |  MCP2221A RX (J38)
+SCL  |  RA14 |  P57_SCL        |  MCP2221A SCL and mikroBUS B SCL
+SDA  |  RA15 |  P56_SDA        |  MCP2221A SDA and mikroBUS B SDA
+
+
+Switches
+----------------------------------------------------------------
+NOTE: because of the tie to LED D10, removing JP2 might be
+required for using switch S5.
+
+ +- Switch
+ |       +- Processor pin
+ |       |       +- Explorer 16/32 net name(s)
+ |       |       |                 +- Other pin usage on board
+ |       |       |                 |
+/===\ /=====\ /===============\ /========================================\
+S3   |  RD6  |  P83_S3         |  
+S6   |  RD7  |  P84_S6         |  
+S5   |  RA7  |  P92_S5_LED10   |  LED D10, weak pull-up
+S4   |  RD13 |  P80_S4         |  
+
+
+LCD
+----------------------------------------------------------------
+
+ +- LCD function
+ |       +- Processor pin
+ |       |       +- Explorer 16/32 net name(s)
+ |       |       |                 +- Other pin usage on board
+ |       |       |                 |
+/===\ /=====\ /===============\ /========================================\
+D0   |  RE0  |  P93_LCDD0      |  
+D1   |  RE1  |  P94_LCDD1      |  
+D2   |  RE2  |  P98_LCDD2      |
+D3   |  RE3  |  P99_LCDD3      |  
+D4   |  RE4  |  P100_LCDD4     |  
+D5   |  RE5  |  P3_LCDD5       |  
+D6   |  RE6  |  P4_LCDD6       |  
+D7   |  RE7  |  P5_LCDD7       |  
+RS   |  RB15 |  P44_LCDRS      |  
+E    |  RD4  |  P81_LCDE       |  
+RW   |  RD5  |  P82_LCDRW      |  Disconnectable via J19
+
+
+References/Links
+----------------------------------------------------------------
+[1] http://www.mikroe.com/mikrobus/
+[2] http://www.microchip.com/MA240023
+[3] http://www.microchip.com/explorer1632
+
+
+Legal
+----------------------------------------------------------------
+mikroBUS a trademark of MikroElectronika.

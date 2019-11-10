@@ -6,6 +6,8 @@
  */
 
 
+#define BUTTON_DEBOUCE_TIME_MS 20
+
 #include "xc.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,33 +20,49 @@
 #include "bsp/leds.h"
 
 static void TimerEventHandler( void );
-
+static void ButtonDebounce( void );
+unsigned char cnt = 0;
 
 int main(void) {
-    LED_Enable ( LED_D10 );
-    LED_Enable ( LED_D3 );
-    
+    LED_Enable_all();
     BUTTON_Enable ( BUTTON_S3 );
     
     /* Get a timer event once every 100ms for the blink alive. */
     TIMER_SetConfiguration ( TIMER_CONFIGURATION_1MS );
     TIMER_RequestTick( &TimerEventHandler, 1000 );
+    TIMER_RequestTick( &ButtonDebounce, 1 );
     
     while(1){
-     
-        if(BUTTON_IsPressed( BUTTON_S3 ) == true)
-        {
-            LED_On( LED_D3 );
+
+        if ( cnt == 128 ){
+            cnt = 0;
         }
-        else
-        {
-            LED_Off( LED_D3 );
-        }
-    }
-        
+        LEDS_Set(cnt);   
+    }  
 }
 
 static void TimerEventHandler(void)
 {    
     LED_Toggle( LED_D10 );
+}
+
+static void ButtonDebounce(void)
+{    
+    static uint16_t debounceCounterS3 = 0;
+
+    
+    if(BUTTON_IsPressed( BUTTON_S3 ) == true){
+        if(debounceCounterS3 == 0)
+        {
+            LED_Toggle( LED_D9 );
+            cnt++;
+        }
+        debounceCounterS3 = BUTTON_DEBOUCE_TIME_MS;
+    } else{
+        if(debounceCounterS3 != 0)
+        {
+            debounceCounterS3--;
+        }
+    }
+    
 }
