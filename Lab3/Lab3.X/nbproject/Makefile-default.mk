@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c system.c
+SOURCEFILES_QUOTED_IF_SPACED=bsp/timer_1ms.c bsp/leds.c bsp/buttons.c bsp/uart2.c main.c system.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/system.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/system.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/bsp/timer_1ms.o ${OBJECTDIR}/bsp/leds.o ${OBJECTDIR}/bsp/buttons.o ${OBJECTDIR}/bsp/uart2.o ${OBJECTDIR}/main.o ${OBJECTDIR}/system.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/bsp/timer_1ms.o.d ${OBJECTDIR}/bsp/leds.o.d ${OBJECTDIR}/bsp/buttons.o.d ${OBJECTDIR}/bsp/uart2.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/system.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/system.o
+OBJECTFILES=${OBJECTDIR}/bsp/timer_1ms.o ${OBJECTDIR}/bsp/leds.o ${OBJECTDIR}/bsp/buttons.o ${OBJECTDIR}/bsp/uart2.o ${OBJECTDIR}/main.o ${OBJECTDIR}/system.o
 
 # Source Files
-SOURCEFILES=main.c system.c
+SOURCEFILES=bsp/timer_1ms.c bsp/leds.c bsp/buttons.c bsp/uart2.c main.c system.c
 
 
 
@@ -95,6 +95,34 @@ MP_LINKER_FILE_OPTION=,--script=p24FJ1024GB610.gld
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
+${OBJECTDIR}/bsp/timer_1ms.o: bsp/timer_1ms.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/bsp" 
+	@${RM} ${OBJECTDIR}/bsp/timer_1ms.o.d 
+	@${RM} ${OBJECTDIR}/bsp/timer_1ms.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  bsp/timer_1ms.c  -o ${OBJECTDIR}/bsp/timer_1ms.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/bsp/timer_1ms.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/bsp/timer_1ms.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/bsp/leds.o: bsp/leds.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/bsp" 
+	@${RM} ${OBJECTDIR}/bsp/leds.o.d 
+	@${RM} ${OBJECTDIR}/bsp/leds.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  bsp/leds.c  -o ${OBJECTDIR}/bsp/leds.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/bsp/leds.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/bsp/leds.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/bsp/buttons.o: bsp/buttons.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/bsp" 
+	@${RM} ${OBJECTDIR}/bsp/buttons.o.d 
+	@${RM} ${OBJECTDIR}/bsp/buttons.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  bsp/buttons.c  -o ${OBJECTDIR}/bsp/buttons.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/bsp/buttons.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/bsp/buttons.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/bsp/uart2.o: bsp/uart2.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/bsp" 
+	@${RM} ${OBJECTDIR}/bsp/uart2.o.d 
+	@${RM} ${OBJECTDIR}/bsp/uart2.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  bsp/uart2.c  -o ${OBJECTDIR}/bsp/uart2.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/bsp/uart2.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/bsp/uart2.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
@@ -110,6 +138,34 @@ ${OBJECTDIR}/system.o: system.c  nbproject/Makefile-${CND_CONF}.mk
 	@${FIXDEPS} "${OBJECTDIR}/system.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 else
+${OBJECTDIR}/bsp/timer_1ms.o: bsp/timer_1ms.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/bsp" 
+	@${RM} ${OBJECTDIR}/bsp/timer_1ms.o.d 
+	@${RM} ${OBJECTDIR}/bsp/timer_1ms.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  bsp/timer_1ms.c  -o ${OBJECTDIR}/bsp/timer_1ms.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/bsp/timer_1ms.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/bsp/timer_1ms.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/bsp/leds.o: bsp/leds.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/bsp" 
+	@${RM} ${OBJECTDIR}/bsp/leds.o.d 
+	@${RM} ${OBJECTDIR}/bsp/leds.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  bsp/leds.c  -o ${OBJECTDIR}/bsp/leds.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/bsp/leds.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/bsp/leds.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/bsp/buttons.o: bsp/buttons.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/bsp" 
+	@${RM} ${OBJECTDIR}/bsp/buttons.o.d 
+	@${RM} ${OBJECTDIR}/bsp/buttons.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  bsp/buttons.c  -o ${OBJECTDIR}/bsp/buttons.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/bsp/buttons.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/bsp/buttons.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/bsp/uart2.o: bsp/uart2.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/bsp" 
+	@${RM} ${OBJECTDIR}/bsp/uart2.o.d 
+	@${RM} ${OBJECTDIR}/bsp/uart2.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  bsp/uart2.c  -o ${OBJECTDIR}/bsp/uart2.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/bsp/uart2.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off  
+	@${FIXDEPS} "${OBJECTDIR}/bsp/uart2.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 

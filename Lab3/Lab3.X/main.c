@@ -7,33 +7,35 @@
 
 
 #include "xc.h"
-#define FP 40000000
-#define BAUDRATE 9600
-#define BRGVAL ((FP/BAUDRATE)/16)-1
-#define DELAY_105uS asm volatile ("REPEAT, #4201"); Nop(); // 105uS delay
+#include <stdio.h>
+#include <stdlib.h>
+#include <stddef.h>
+#include <stdbool.h>
+
+#include <libpic30.h>
+#include "bsp/leds.h"
+#include "bsp/timer_1ms.h"
+#include "bsp/uart2.h"
+
+static void TimerEventHandler( void );
 
 int main(void) {
-    U2MODEbits.STSEL = 0; // 1-Stop bit
-    U2MODEbits.PDSEL = 0; // No Parity, 8-Data bits
-    U2MODEbits.ABAUD = 0; // Auto-Baud disabled
-    U2MODEbits.BRGH = 0; // Standard-Speed mode
-    U2BRG = BRGVAL; // Baud Rate setting for 9600
-    U2STAbits.UTXISEL0 = 0; // Interrupt after one TX character is transmitted
-    U2STAbits.UTXISEL1 = 0;
-    IEC1bits.U2TXIE = 1; // Enable UART TX interrupt
-    U2MODEbits.UARTEN = 1; // Enable UART
-    U2STAbits.UTXEN = 1; // Enable UART TX
-    
-    U2TXREG = 'a'; // Transmit one character
-    
+    LED_Enable ( LED_D10 );
+    /* Get a timer event once every 100ms for the blink alive. */
+    TIMER_SetConfiguration ( TIMER_CONFIGURATION_1MS );
+    TIMER_RequestTick( &TimerEventHandler, 1000 );
+    initU2();
     while(1)
     {
+
     }
 
 }
 
-void __attribute__((__interrupt__, auto_psv)) _U2TXInterrupt(void)
-{
-    IFS1bits.U2TXIF = 0; // Clear TX Interrupt flag
-    U2TXREG = 'a'; // Transmit one character
+static void TimerEventHandler(void)
+{    
+    LED_Toggle( LED_D10 );
+    char* buf = "12345"; 
+    write(2, buf, 5);
+
 }
